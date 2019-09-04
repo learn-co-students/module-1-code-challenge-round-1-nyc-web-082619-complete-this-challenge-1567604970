@@ -16,8 +16,10 @@ class Restaurant
   end
 
   def average_star_rating
-    total = reviews.reduce(0) { |sum, review| sum + review.rating }
-    total / reviews.size
+    total = reviews.reduce([0.0, 0]) do |sum_total, review|
+      [sum_total[0] + review.rating, sum_total[1] + 1]
+    end #Creates an array that keeps track of the sum_total in [0] and the total in [1].
+    total[0] / total[1]
   end
 
   def longest_review
