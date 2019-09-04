@@ -16,14 +16,8 @@ class Restaurant
   end
 
   def average_star_rating
-    total, sum = 0, 0
-
-    reviews.each do |review|
-      total += 1
-      sum += review.rating
-    end
-
-    sum / total
+    total = reviews.reduce(0) { |sum, review| sum + review.rating }
+    total / reviews.size
   end
 
   def longest_review
